@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taco Cost & Yield Calculator</title>
     <style>
+        /* ALL YOUR CSS CODE GOES HERE - KEEP IT EXACTLY AS IS */
         :root {
             --primary: #ff6b35;
             --primary-dark: #e55a2b;
@@ -692,21 +693,33 @@
     </div>
 
     <script>
-        // Main application functionality
+        // Wait for DOM to be fully loaded
         document.addEventListener('DOMContentLoaded', function() {
-            // Language Toggle
-            document.querySelector('.language-toggle').addEventListener('click', function() {
-                const enElements = document.querySelectorAll('.language-en');
-                const esElements = document.querySelectorAll('.language-es');
-                
-                enElements.forEach(el => {
-                    el.style.display = el.style.display === 'none' ? 'block' : 'none';
+            initializeApp();
+        });
+
+        function initializeApp() {
+            // Language Toggle - Fixed version
+            const languageToggle = document.querySelector('.language-toggle');
+            if (languageToggle) {
+                languageToggle.addEventListener('click', function() {
+                    const enElements = document.querySelectorAll('.language-en');
+                    const esElements = document.querySelectorAll('.language-es');
+                    
+                    // Check current state by looking at first English element
+                    const isEnglishVisible = enElements[0].style.display !== 'none';
+                    
+                    if (isEnglishVisible) {
+                        // Switch to Spanish
+                        enElements.forEach(el => el.style.display = 'none');
+                        esElements.forEach(el => el.style.display = 'block');
+                    } else {
+                        // Switch to English
+                        enElements.forEach(el => el.style.display = 'block');
+                        esElements.forEach(el => el.style.display = 'none');
+                    }
                 });
-                
-                esElements.forEach(el => {
-                    el.style.display = el.style.display === 'none' ? 'block' : 'none';
-                });
-            });
+            }
 
             // Tab Switching
             document.querySelectorAll('.tab').forEach(tab => {
@@ -770,9 +783,8 @@
             // Initialize calculations
             calculateResults();
             updateComboSummary();
-        });
+        }
 
-        // Calculate Results Function
         function calculateResults() {
             const weight = parseFloat(document.getElementById('meat-weight').value) || 0;
             const pricePerPound = parseFloat(document.getElementById('meat-price').value) || 0;
@@ -790,7 +802,6 @@
             document.getElementById('profit').textContent = `$${profit.toFixed(2)}`;
         }
 
-        // Update Combo Summary Function
         function updateComboSummary() {
             const tacoQuantity = parseInt(document.querySelector('.quantity[data-item="taco"]').textContent) || 0;
             const burritoQuantity = parseInt(document.querySelector('.quantity[data-item="burrito"]').textContent) || 0;
@@ -808,7 +819,6 @@
             const tax = subtotal * 0.08;
             const total = subtotal + tax;
             
-            // Update summary rows
             const summaryRows = document.querySelectorAll('.summary-row');
             summaryRows[0].innerHTML = `
                 <span class="language-en">Tacos (x${tacoQuantity})</span>
