@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taco Cost & Yield Calculator</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="logo-icon">🌮</div>
+                <h1 class="language-en">Taco Cost & Yield Calculator</h1>
+                <h1 class="language-es">Calculadora de Costo y Rendimiento de Tacos</h1>
+            </div>
+            <div class="controls">
+                <button class="btn btn-outline language-toggle">
+                    <i>🌐</i> <span class="language-en">Español</span><span class="language-es">English</span>
+                </button>
+                <button class="btn btn-primary help-btn">
+                    <span class="language-en">Help</span><span class="language-es">Ayuda</span>
+                </button>
+            </div>
+        </header>
+
+        <div class="tabs">
+            <button class="tab active" data-tab="calculator">
+                <span class="language-en">Taco Calculator</span>
+                <span class="language-es">Calculadora de Tacos</span>
+            </button>
+            <button class="tab" data-tab="combo">
+                <span class="language-en">Combo Builder</span>
+                <span class="language-es">Constructor de Combos</span>
+            </button>
+        </div>
+
+        <!-- Taco Calculator Tab -->
+        <div class="tab-content active" id="calculator">
+            <!-- Content will be loaded by JavaScript -->
+        </div>
+
+        <!-- Combo Builder Tab -->
+        <div class="tab-content" id="combo">
+            <!-- Content will be loaded by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Help Modal -->
+    <div class="modal" id="help-modal">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <h2 class="modal-title language-en">Help Guide</h2>
+            <h2 class="modal-title language-es">Guía de Ayuda</h2>
+            
+            <div class="help-section">
+                <h3 class="help-section-title language-en">Taco Calculator</h3>
+                <h3 class="help-section-title language-es">Calculadora de Tacos</h3>
+                <p class="language-en">
+                    Use the Taco Calculator to determine the cost, yield, and profit for different types of meat.
+                    Select the meat type, enter the weight and price per pound, then adjust the tacos per pound and price per taco to see your results.
+                </p>
+                <p class="language-es">
+                    Usa la Calculadora de Tacos para determinar el costo, rendimiento y ganancia para diferentes tipos de carne.
+                    Selecciona el tipo de carne, ingresa el peso y precio por libra, luego ajusta los tacos por libra y el precio por taco para ver tus resultados.
+                </p>
+            </div>
+            
+            <div class="help-section">
+                <h3 class="help-section-title language-en">Combo Builder</h3>
+                <h3 class="help-section-title language-es">Constructor de Combos</h3>
+                <p class="language-en">
+                    Use the Combo Builder to create and price custom meal combinations.
+                    Add items to your combo and see the total price update in real-time.
+                </p>
+                <p class="language-es">
+                    Usa el Constructor de Combos para crear y calcular el precio de combinaciones de comidas personalizadas.
+                    Agrega elementos a tu combo y ve cómo el precio total se actualiza en tiempo real.
+                </p>
+            </div>
+            
+            <div class="help-section">
+                <h3 class="help-section-title language-en">Language Toggle</h3>
+                <h3 class="help-section-title language-es">Cambio de Idioma</h3>
+                <p class="language-en">
+                    Click the language button in the top right to switch between English and Spanish.
+                </p>
+                <p class="language-es">
+                    Haz clic en el botón de idioma en la parte superior derecha para cambiar entre inglés y español.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/calculator.js"></script>
+    <script src="js/combo-builder.js"></script>
+</body>
+</html>
