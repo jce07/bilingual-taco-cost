@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meat Cost Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 data-i18n="title">Carne de res, puerco y gallina cost calculator</h1>
+            <div class="controls">
+                <button id="lang-en" class="lang-btn active">EN</button>
+                <button id="lang-es" class="lang-btn">ES</button>
+                <button id="help-btn" data-i18n="helpBtn">Help / Cómo usar</button>
+            </div>
+        </header>
+
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="taco">🥩 Taco Calculator</button>
+            <button class="tab-btn" data-tab="combo">🌯 Combo Builder</button>
+        </div>
+
+        <div id="taco-tab" class="tab-content active">
+            <h2 data-i18n="tacoTitle">Taco Calculator</h2>
+            <div class="meat-card-grid">
+                <div class="card" data-meat="beef">
+                    <h3 data-i18n="cut_beef">Beef (Carne de res)</h3>
+                    <form class="taco-form" data-meat="beef">
+                        <label data-i18n="grade">Grade/Supplier:</label>
+                        <input type="text" class="grade" placeholder="e.g., Choice / Supplier Name">
+
+                        <label data-i18n="rawPrice">Raw Meat Price per lb ($):</label>
+                        <input type="number" class="rawPrice" min="0" step="0.01" value="5">
+
+                        <label data-i18n="batchWeight">Batch Raw Weight (lbs):</label>
+                        <input type="number" class="batchWeight" min="0" step="0.1" value="10">
+
+                        <label data-i18n="trimWaste">Trim/Waste (%):</label>
+                        <input type="number" class="trimWaste" min="0" max="100" step="1" value="10">
+
+                        <label data-i18n="cookLoss">Cook Loss (%):</label>
+                        <input type="number" class="cookLoss" min="0" max="100" step="1" value="20">
+
+                        <label data-i18n="marinadeCost">Marinade Cost for Batch ($):</label>
+                        <input type="number" class="marinadeCost" min="0" step="0.01" value="2">
+
+                        <label data-i18n="tortillaCost">Tortilla Cost per Taco ($):</label>
+                        <input type="number" class="tortillaCost" min="0" step="0.01" value="0.1">
+
+                        <label data-i18n="toppingsCost">Toppings Cost per Taco ($):</label>
+                        <input type="number" class="toppingsCost" min="0" step="0.01" value="0.3">
+
+                        <label data-i18n="portionOz">Cooked Portion per Taco (oz):</label>
+                        <input type="number" class="portionOz" min="0" step="0.1" value="2">
+
+                        <label data-i18n="targetFoodCost">Target Food Cost (%):</label>
+                        <input type="number" class="targetFoodCost" min="0" max="100" step="1" value="30">
+
+                        <label data-i18n="plannedPrice">Planned Selling Price per Taco ($):</label>
+                        <input type="number" class="plannedPrice" min="0" step="0.01" value="3">
+                    </form>
+                    <div class="results">
+                        <h3 data-i18n="results">Results</h3>
+                        <p><span data-i18n="cookedYield">Cooked Yield (lbs):</span> <span class="cookedYieldRes"></span></p>
+                        <p><span data-i18n="tacosPerBatch">Tacos per Batch:</span> <span class="tacosPerBatchRes"></span></p>
+                        <p><span data-i18n="meatCostPerTaco">Meat Cost per Taco ($):</span> <span class="meatCostPerTacoRes"></span></p>
+                        <p><span data-i18n="nonMeatCostPerTaco">Non-Meat Cost per Taco ($):</span> <span class="nonMeatCostPerTacoRes"></span></p>
+                        <p><span data-i18n="totalFoodCostPerTaco">Total Food Cost per Taco ($):</span> <span class="totalFoodCostPerTacoRes"></span></p>
+                        <p><span data-i18n="suggestedPrice">Suggested Price at Target % ($):</span> <span class="suggestedPriceRes"></span></p>
+                        <p><span data-i18n="actualFoodCost">Actual Food Cost %:</span> <span class="actualFoodCostRes"></span></p>
+                        <p><span data-i18n="grossMargin">Gross Margin per Taco ($):</span> <span class="grossMarginRes"></span></p>
+                        <p class="note" data-i18n="note">All values use your inputs and are rounded for readability.</p>
+                    </div>
+                </div>
+                <div class="card" data-meat="pork">
+                    <h3 data-i18n="cut_pork">Pork (Carne de puerco)</h3>
+                    <form class="taco-form" data-meat="pork">
+                        <label data-i18n="grade">Grade/Supplier:</label>
+                        <input type="text" class="grade" placeholder="e.g., Choice / Supplier Name">
+
+                        <label data-i18n="rawPrice">Raw Meat Price per lb ($):</label>
+                        <input type="number" class="rawPrice" min="0" step="0.01" value="4">
+
+                        <label data-i18n="batchWeight">Batch Raw Weight (lbs):</label>
+                        <input type="number" class="batchWeight" min="0" step="0.1" value="10">
+
+                        <label data-i18n="trimWaste">Trim/Waste (%):</label>
+                        <input type="number" class="trimWaste" min="0" max="100" step="1" value="15">
+
+                        <label data-i18n="cookLoss">Cook Loss (%):</label>
+                        <input type="number" class="cookLoss" min="0" max="100" step="1" value="25">
+
+                        <label data-i18n="marinadeCost">Marinade Cost for Batch ($):</label>
+                        <input type="number" class="marinadeCost" min="0" step="0.01" value="2">
+
+                        <label data-i18n="tortillaCost">Tortilla Cost per Taco ($):</label>
+                        <input type="number" class="tortillaCost" min="0" step="0.01" value="0.1">
+
+                        <label data-i18n="toppingsCost">Toppings Cost per Taco ($):</label>
+                        <input type="number" class="toppingsCost" min="0" step="0.01" value="0.3">
+
+                        <label data-i18n="portionOz">Cooked Portion per Taco (oz):</label>
+                        <input type="number" class="portionOz" min="0" step="0.1" value="2">
+
+                        <label data-i18n="targetFoodCost">Target Food Cost (%):</label>
+                        <input type="number" class="targetFoodCost" min="0" max="100" step="1" value="30">
+
+                        <label data-i18n="plannedPrice">Planned Selling Price per Taco ($):</label>
+                        <input type="number" class="plannedPrice" min="0" step="0.01" value="3">
+                    </form>
+                    <div class="results">
+                        <h3 data-i18n="results">Results</h3>
+                        <p><span data-i18n="cookedYield">Cooked Yield (lbs):</span> <span class="cookedYieldRes"></span></p>
+                        <p><span data-i18n="tacosPerBatch">Tacos per Batch:</span> <span class="tacosPerBatchRes"></span></p>
+                        <p><span data-i18n="meatCostPerTaco">Meat Cost per Taco ($):</span> <span class="meatCostPerTacoRes"></span></p>
+                        <p><span data-i18n="nonMeatCostPerTaco">Non-Meat Cost per Taco ($):</span> <span class="nonMeatCostPerTacoRes"></span></p>
+                        <p><span data-i18n="totalFoodCostPerTaco">Total Food Cost per Taco ($):</span> <span class="totalFoodCostPerTacoRes"></span></p>
+                        <p><span data-i18n="suggestedPrice">Suggested Price at Target % ($):</span> <span class="suggestedPriceRes"></span></p>
+                        <p><span data-i18n="actualFoodCost">Actual Food Cost %:</span> <span class="actualFoodCostRes"></span></p>
+                        <p><span data-i18n="grossMargin">Gross Margin per Taco ($):</span> <span class="grossMarginRes"></span></p>
+                        <p class="note" data-i18n="note">All values use your inputs and are rounded for readability.</p>
+                    </div>
+                </div>
+                <div class="card" data-meat="chicken">
+                    <h3 data-i18n="cut_chicken">Chicken (Carne de gallina)</h3>
+                    <form class="taco-form" data-meat="chicken">
+                        <label data-i18n="grade">Grade/Supplier:</label>
+                        <input type="text" class="grade" placeholder="e.g., Choice / Supplier Name">
+
+                        <label data-i18n="rawPrice">Raw Meat Price per lb ($):</label>
+                        <input type="number" class="rawPrice" min="0" step="0.01" value="3">
+
+                        <label data-i18n="batchWeight">Batch Raw Weight (lbs):</label>
+                        <input type="number" class="batchWeight" min="0" step="0.1" value="10">
+
+                        <label data-i18n="trimWaste">Trim/Waste (%):</label>
+                        <input type="number" class="trimWaste" min="0" max="100" step="1" value="5">
+
+                        <label data-i18n="cookLoss">Cook Loss (%):</label>
+                        <input type="number" class="cookLoss" min="0" max="100" step="1" value="15">
+
+                        <label data-i18n="marinadeCost">Marinade Cost for Batch ($):</label>
+                        <input type="number" class="marinadeCost" min="0" step="0.01" value="1.5">
+
+                        <label data-i18n="tortillaCost">Tortilla Cost per Taco ($):</label>
+                        <input type="number" class="tortillaCost" min="0" step="0.01" value="0.1">
+
+                        <label data-i18n="toppingsCost">Toppings Cost per Taco ($):</label>
+                        <input type="number" class="toppingsCost" min="0" step="0.01" value="0.3">
+
+                        <label data-i18n="portionOz">Cooked Portion per Taco (oz):</label>
+                        <input type="number" class="portionOz" min="0" step="0.1" value="2">
+
+                        <label data-i18n="targetFoodCost">Target Food Cost (%):</label>
+                        <input type="number" class="targetFoodCost" min="0" max="100" step="1" value="30">
+
+                        <label data-i18n="plannedPrice">Planned Selling Price per Taco ($):</label>
+                        <input type="number" class="plannedPrice" min="0" step="0.01" value="2.5">
+                    </form>
+                    <div class="results">
+                        <h3 data-i18n="results">Results</h3>
+                        <p><span data-i18n="cookedYield">Cooked Yield (lbs):</span> <span class="cookedYieldRes"></span></p>
+                        <p><span data-i18n="tacosPerBatch">Tacos per Batch:</span> <span class="tacosPerBatchRes"></span></p>
+                        <p><span data-i18n="meatCostPerTaco">Meat Cost per Taco ($):</span> <span class="meatCostPerTacoRes"></span></p>
+                        <p><span data-i18n="nonMeatCostPerTaco">Non-Meat Cost per Taco ($):</span> <span class="nonMeatCostPerTacoRes"></span></p>
+                        <p><span data-i18n="totalFoodCostPerTaco">Total Food Cost per Taco ($):</span> <span class="totalFoodCostPerTacoRes"></span></p>
+                        <p><span data-i18n="suggestedPrice">Suggested Price at Target % ($):</span> <span class="suggestedPriceRes"></span></p>
+                        <p><span data-i18n="actualFoodCost">Actual Food Cost %:</span> <span class="actualFoodCostRes"></span></p>
+                        <p><span data-i18n="grossMargin">Gross Margin per Taco ($):</span> <span class="grossMarginRes"></span></p>
+                        <p class="note" data-i18n="note">All values use your inputs and are rounded for readability.</p>
+                    </div>
+                </div>
+                <div class="card" data-meat="seafood">
+                    <h3 data-i18n="cut_seafood">Seafood (Mariscos)</h3>
+                    <form class="taco-form" data-meat="seafood">
+                        <label data-i18n="grade">Grade/Supplier:</label>
+                        <input type="text" class="grade" placeholder="e.g., Choice / Supplier Name">
+
+                        <label data-i18n="rawPrice">Raw Meat Price per lb ($):</label>
+                        <input type="number" class="rawPrice" min="0" step="0.01" value="8">
+
+                        <label data-i18n="batchWeight">Batch Raw Weight (lbs):</label>
+                        <input type="number" class="batchWeight" min="0" step="0.1" value="10">
+
+                        <label data-i18n="trimWaste">Trim/Waste (%):</label>
+                        <input type="number" class="trimWaste" min="0" max="100" step="1" value="20">
+
+                        <label data-i18n="cookLoss">Cook Loss (%):</label>
+                        <input type="number" class="cookLoss" min="0" max="100" step="1" value="10">
+
+                        <label data-i18n="marinadeCost">Marinade Cost for Batch ($):</label>
+                        <input type="number" class="marinadeCost" min="0" step="0.01" value="3">
+
+                        <label data-i18n="tortillaCost">Tortilla Cost per Taco ($):</label>
+                        <input type="number" class="tortillaCost" min="0" step="0.01" value="0.1">
+
+                        <label data-i18n="toppingsCost">Toppings Cost per Taco ($):</label>
+                        <input type="number" class="toppingsCost" min="0" step="0.01" value="0.4">
+
+                        <label data-i18n="portionOz">Cooked Portion per Taco (oz):</label>
+                        <input type="number" class="portionOz" min="0" step="0.1" value="2">
+
+                        <label data-i18n="targetFoodCost">Target Food Cost (%):</label>
+                        <input type="number" class="targetFoodCost" min="0" max="100" step="1" value="30">
+
+                        <label data-i18n="plannedPrice">Planned Selling Price per Taco ($):</label>
+                        <input type="number" class="plannedPrice" min="0" step="0.01" value="4">
+                    </form>
+                    <div class="results">
+                        <h3 data-i18n="results">Results</h3>
+                        <p><span data-i18n="cookedYield">Cooked Yield (lbs):</span> <span class="cookedYieldRes"></span></p>
+                        <p><span data-i18n="tacosPerBatch">Tacos per Batch:</span> <span class="tacosPerBatchRes"></span></p>
+                        <p><span data-i18n="meatCostPerTaco">Meat Cost per Taco ($):</span> <span class="meatCostPerTacoRes"></span></p>
+                        <p><span data-i18n="nonMeatCostPerTaco">Non-Meat Cost per Taco ($):</span> <span class="nonMeatCostPerTacoRes"></span></p>
+                        <p><span data-i18n="totalFoodCostPerTaco">Total Food Cost per Taco ($):</span> <span class="totalFoodCostPerTacoRes"></span></p>
+                        <p><span data-i18n="suggestedPrice">Suggested Price at Target % ($):</span> <span class="suggestedPriceRes"></span></p>
+                        <p><span data-i18n="actualFoodCost">Actual Food Cost %:</span> <span class="actualFoodCostRes"></span></p>
+                        <p><span data-i18n="grossMargin">Gross Margin per Taco ($):</span> <span class="grossMarginRes"></span></p>
+                        <p class="note" data-i18n="note">All values use your inputs and are rounded for readability.</p>
+                    </div>
+                </div>
+                <div class="card" data-meat="shrimp">
+                    <h3 data-i18n="cut_shrimp">Shrimp (Camarones)</h3>
+                    <form class="taco-form" data-meat="shrimp">
+                        <label data-i18n="grade">Grade/Supplier:</label>
+                        <input type="text" class="grade" placeholder="e.g., Choice / Supplier Name">
+
+                        <label data-i18n="rawPrice">Raw Meat Price per lb ($):</label>
+                        <input type="number" class="rawPrice" min="0" step="0.01" value="10">
+
+                        <label data-i18n="batchWeight">Batch Raw Weight (lbs):</label>
+                        <input type="number" class="batchWeight" min="0" step="0.1" value="10">
+
+                        <label data-i18n="trimWaste">Trim/Waste (%):</label>
+                        <input type="number" class="trimWaste" min="0" max="100" step="1" value="25">
+
+                        <label data-i18n="cookLoss">Cook Loss (%):</label>
+                        <input type="number" class="cookLoss" min="0" max="100" step="1" value="10">
+
+                        <label data-i18n="marinadeCost">Marinade Cost for Batch ($):</label>
+                        <input type="number" class="marinadeCost" min="0" step="0.01" value="3">
+
+                        <label data-i18n="tortillaCost">Tortilla Cost per Taco ($):</label>
+                        <input type="number" class="tortillaCost" min="0" step="0.01" value="0.1">
+
+                        <label data-i18n="toppingsCost">Toppings Cost per Taco ($):</label>
+                        <input type="number" class="toppingsCost" min="0" step="0.01" value="0.4">
+
+                        <label data-i18n="portionOz">Cooked Portion per Taco (oz):</label>
+                        <input type="number" class="portionOz" min="0" step="0.1" value="2">
+
+                        <label data-i18n="targetFoodCost">Target Food Cost (%):</label>
+                        <input type="number" class="targetFoodCost" min="0" max="100" step="1" value="30">
+
+                        <label data-i18n="plannedPrice">Planned Selling Price per Taco ($):</label>
+                        <input type="number" class="plannedPrice" min="0" step="0.01" value="4.5">
+                    </form>
+                    <div class="results">
+                        <h3 data-i18n="results">Results</h3>
+                        <p><span data-i18n="cookedYield">Cooked Yield (lbs):</span> <span class="cookedYieldRes"></span></p>
+                        <p><span data-i18n="tacosPerBatch">Tacos per Batch:</span> <span class="tacosPerBatchRes"></span></p>
+                        <p><span data-i18n="meatCostPerTaco">Meat Cost per Taco ($):</span> <span class="meatCostPerTacoRes"></span></p>
+                        <p><span data-i18n="nonMeatCostPerTaco">Non-Meat Cost per Taco ($):</span> <span class="nonMeatCostPerTacoRes"></span></p>
+                        <p><span data-i18n="totalFoodCostPerTaco">Total Food Cost per Taco ($):</span> <span class="totalFoodCostPerTacoRes"></span></p>
+                        <p><span data-i18n="suggestedPrice">Suggested Price at Target % ($):</span> <span class="suggestedPriceRes"></span></p>
+                        <p><span data-i18n="actualFoodCost">Actual Food Cost %:</span> <span class="actualFoodCostRes"></span></p>
+                        <p><span data-i18n="grossMargin">Gross Margin per Taco ($):</span> <span class="grossMarginRes"></span></p>
+                        <p class="note" data-i18n="note">All values use your inputs and are rounded for readability.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="combo-tab" class="tab-content">
+            <div class="card">
+                <h2 data-i18n="comboTitle">Combo Builder</h2>
+                <div id="combo-items"></div>
+                <button id="add-item" data-i18n="addItem">Add Item</button>
+
+                <label data-i18n="comboPrice">Combo Price ($):</label>
+                <input type="number" id="comboPrice" min="0" step="0.01" value="10">
+
+                <div id="combo-results" class="results">
+                    <h3 data-i18n="results">Results</h3>
+                    <p><span data-i18n="totalComboCost">Total Combo Cost ($):</span> <span id="totalComboCostRes"></span></p>
+                    <p><span data-i18n="alaCartePrice">A-la-Carte Price ($):</span> <span id="alaCartePriceRes"></span></p>
+                    <p><span data-i18n="comboSavings">Savings vs A-la-Carte ($):</span> <span id="comboSavingsRes"></span></p>
+                    <p><span data-i18n="comboMargin">Combo Gross Margin ($):</span> <span id="comboMarginRes"></span></p>
+                </div>
+            </div>
+        </div>
+
+        <div id="help-modal" class="modal">
+            <div class="modal-content">
+                <span id="close-modal">&times;</span>
+                <h2 data-i18n="helpTitle">How to Use</h2>
+                <div id="help-text"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+</xaiArtifact>
+
